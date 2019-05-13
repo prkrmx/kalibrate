@@ -76,10 +76,10 @@ void usage(char *prog) {
 	printf("\t\t%s <-f frequency | -c channel> [options]\n", basename(prog));
 	printf("\n");
 	printf("Where options are:\n");
-	printf("\t-s\tband to scan (GSM850, GSM900, EGSM, DCS, PCS)\n");
+	printf("\t-s\tband to scan (GSM850, GSM900, EGSM900, DCS1800, PCS1900)\n");
 	printf("\t-f\tfrequency of nearby GSM base station\n");
 	printf("\t-c\tchannel of nearby GSM base station\n");
-	printf("\t-b\tband indicator (GSM850, GSM900, EGSM, DCS, PCS)\n");
+	printf("\t-b\tband indicator (GSM850, GSM900, EGSM900, DCS1800, PCS1900)\n");
 	printf("\t-R\tRX subdev spec\n");
 	printf("\t-A\tantenna TX/RX (0) or RX2 (1), defaults to RX2\n");
 	printf("\t-g\tgain as %% of range, defaults to 45%%\n");
