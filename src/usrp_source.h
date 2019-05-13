@@ -41,7 +41,7 @@ public:
 
 	~usrp_source();
 
-	int open(char *subdev);
+	int open(char *subdev, char *env);
 	int read(complex *buf,
 		unsigned int num_samples,
 		unsigned int *samples_read);

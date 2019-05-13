@@ -144,11 +144,11 @@ bool usrp_source::set_gain(float gain) {
 /*
  * open() should be called before multiple threads access usrp_source.
  */
-int usrp_source::open(char *subdev) {
+int usrp_source::open(char *subdev, char *env) {
 	std::string addr("");
 
 	if(!m_dev) {
-		char *env = std::getenv("KAL_DEVICE");
+		//char *env = std::getenv("KAL_DEVICE");
 		if (env)
 			addr = std::string(env);
 
