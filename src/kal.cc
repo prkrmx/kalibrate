@@ -246,7 +246,7 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "Using %s channel %d (%.1fMHz)\n",
 		   bi_to_str(bi), chan, freq / 1e6);
 
-		return offset_detect(u);
+		return offset_detect(u, freq);
 	}
 
 	fprintf(stderr, "%s: Scanning for %s base stations.\n",

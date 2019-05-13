@@ -24,9 +24,10 @@ Build
 =====
 
 ```
-$ ./bootstrap
+$ autoreconf -i
 $ ./configure
-$ make
+$ make -j $nproc
+$ sudo make install
 ```
 
 Examples
@@ -35,22 +36,18 @@ Examples
 USRP2 with internal reference:
 
 ```
-$ ./kal -f 1941.6e6
-linux; GNU C++ version 4.4.4 20100630 (Red Hat 4.4.4-10); Boost_104100; UHD_20101116.195923.c5043c6
-
-Current recv sock buff size: 50000000 bytes
-
-Warning:
-    The hardware does not support the requested RX sample rate:
-    Target sample rate: 0.270833 MSps
-    Actual sample rate: 0.271739 MSps
-
+$ sudo kal -c 523 -b DCS
+[INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.13.1.HEAD-0-gbbce3e45
+[INFO] [USRP2] Opening a USRP2/N-Series device...
+[INFO] [USRP2] Current recv frame size: 1472 bytes
+[INFO] [USRP2] Current send frame size: 1472 bytes
 kal: Calculating clock frequency offset.
-Using PCS-1900 channel 569 (1941.6MHz)
-average         [min, max]      (range, stddev)
-+ 22.221kHz     [21574, 22791]  (1217, 352.328674)
+Using DCS-1800 channel 523 (1807.4MHz)
+average		[min, max]	(range, stddev)
++ 862Hz	[850, 872]	(23, 6.271877)
 overruns: 0
 not found: 0
+average absolute error: 0.477 ppm
 ```
 
 USRP2 with external 10MHz reference - Agilent E4438C (OCXO):

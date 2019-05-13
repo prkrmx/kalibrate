@@ -37,14 +37,14 @@ static const float		OFFSET_MAX	= 40e3;
 extern int g_verbosity;
 
 
-int offset_detect(usrp_source *u) {
+int offset_detect(usrp_source *u, double freq) {
 
 	static const double GSM_RATE = 1625000.0 / 6.0;
 
 	unsigned int new_overruns = 0, overruns = 0;
 	int notfound = 0;
 	unsigned int s_len, b_len, consumed, count;
-	float offset = 0.0, min = 0.0, max = 0.0, avg_offset = 0.0,
+	float offset = 0.0, min = 0.0, max = 0.0, avg_offset = 0.0, ppm = 0.0,
 	   stddev = 0.0, sps, offsets[AVG_COUNT];
 	complex *cbuf;
 	fcch_detector *l;
@@ -111,12 +111,15 @@ int offset_detect(usrp_source *u) {
 	avg_offset = avg(offsets + AVG_THRESHOLD, AVG_COUNT - 2 * AVG_THRESHOLD, &stddev);
 	min = offsets[AVG_THRESHOLD];
 	max = offsets[AVG_COUNT - AVG_THRESHOLD - 1];
+	ppm = (avg_offset*1e6)/freq;
 
 	printf("average\t\t[min, max]\t(range, stddev)\n");
 	display_freq(avg_offset);
-	printf("\t\t[%d, %d]\t(%d, %f)\n", (int)round(min), (int)round(max), (int)round(max - min), stddev);
+	printf("\t[%d, %d]\t(%d, %f)\n", (int)round(min), (int)round(max), (int)round(max - min), stddev);
 	printf("overruns: %u\n", overruns);
 	printf("not found: %u\n", notfound);
+	printf("average absolute error: %.3f ppm\n", ppm);
+	printf("%.3f\n", ppm);
 
 	return 0;
 }
